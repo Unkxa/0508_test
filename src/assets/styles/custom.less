@@ -1,0 +1,396 @@
+/* ==================================================自定义- 高度塌陷================================================== */
+.sink:after {
+  /* 设置添加子元素的内容是空 */
+  content: '';
+  /* 设置添加子元素为块级元素 */
+  display: block;
+  /* 设置添加的子元素的高度0 */
+  height: 0;
+  /* 设置添加子元素看不见 */
+  visibility: hidden;
+  /* 设置clear：both */
+  clear: both;
+}
+
+/* ==================================================自定义- 居中================================================== */
+
+/*
+    .flex-y-end-start {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+    简化如下:
+    */
+// 页面布局
+.main-container-content,
+.custom-drawer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .content-wrap {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+    border: 1px solid #e5e6eb;
+    background: #fff;
+    margin: 16px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .content-wrap-no-border {
+    margin: 16px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .content-footer {
+    border-top: 1px solid var(---black-3, #e5e6eb);
+    background: #fff;
+    display: flex;
+    padding: 12px 40px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+  }
+  //两个查询的样式
+  .operate-box {
+    padding: 0 24px;
+    margin: @marginBase * 2 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    .left,
+    .right {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      .left-btn-group,
+      .search-group,
+      .btn-group {
+        display: flex;
+        align-items: center;
+        margin-left: @marginBase * 2;
+        .ant-select,
+        input {
+          width: 200px;
+        }
+        @media screen and (max-width: 1450px) {
+          .ant-select,
+          input {
+            width: 148px;
+          }
+        }
+        button {
+          &:first-child {
+            margin-right: 12px;
+          }
+        }
+        .title--span {
+          color: #4e5969;
+          margin-right: @marginBase * 2;
+        }
+      }
+      .left-btn-group {
+        margin: 0;
+        button {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+  .table-box {
+    flex: 1;
+  }
+}
+.flex-align-items-mixins(@flexDirection, @justifyContent) {
+  &-start {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: @justifyContent;
+    align-items: flex-start;
+  }
+
+  &-center {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: @justifyContent;
+    align-items: center;
+  }
+
+  &-end {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: @justifyContent;
+    align-items: flex-end;
+  }
+}
+
+.flex-mixins(@flexDirection) {
+  display: flex;
+  flex-direction: @flexDirection;
+
+  &-start {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: flex-start;
+    .flex-align-items-mixins(@flexDirection, flex-start);
+  }
+
+  &-center {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: center;
+    .flex-align-items-mixins(@flexDirection, center);
+  }
+
+  &-end {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: flex-end;
+    .flex-align-items-mixins(@flexDirection, flex-end);
+  }
+
+  &-between {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: space-between;
+    .flex-align-items-mixins(@flexDirection, space-between);
+  }
+
+  &-around {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: space-around;
+    .flex-align-items-mixins(@flexDirection, space-around);
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-0 {
+    display: flex;
+    // 禁止缩放
+    flex: 0 0 auto;
+  }
+
+  &-1 {
+    display: flex;
+    // 禁止缩放
+    flex: 1 1 auto;
+  }
+
+  &-wrap {
+    display: flex;
+    // 允许换行
+    flex-wrap: wrap;
+  }
+
+  &-x {
+    display: flex;
+    // 横向主轴
+    .flex-mixins(row);
+  }
+
+  &-y {
+    display: flex;
+    // 纵向主轴
+    .flex-mixins(column);
+  }
+
+  &-xy {
+    display: flex;
+    // 横向反转主轴
+    .flex-mixins(row-reverse);
+  }
+
+  &-yr {
+    display: flex;
+    // 纵向反转主轴
+    .flex-mixins(column-reverse);
+  }
+}
+
+// 三层遍历，组合所有属性值 sass 写法
+// @each $direction in $directionList {
+//   // 简化一些属性值
+//   $dir: $direction;
+
+//   @if $direction == 'row' {
+//     $dir: 'x';
+//   }
+
+//   @if $direction == 'column' {
+//     $dir: 'y';
+//   }
+
+//   @each $justifyContent in $justifyContentList {
+//     // 简化一些属性值
+//     $JC: $justifyContent;
+
+//     @if $justifyContent == 'flex-start' {
+//       $JC: 'start';
+//     }
+
+//     @if $justifyContent == 'flex-end' {
+//       $JC: 'end';
+//     }
+
+//     @if $justifyContent == 'space-between' {
+//       $JC: 'between';
+//     }
+
+//     @if $justifyContent == 'space-around' {
+//       $JC: 'around';
+//     }
+
+//     @each $alignItems in $alignItemsList {
+//       // 简化一些属性值
+//       $AI: $alignItems;
+
+//       @if $alignItems == 'flex-start' {
+//         $AI: 'start';
+//       }
+
+//       @if $alignItems == 'flex-end' {
+//         $AI: 'end';
+//       }
+
+//       .flex-#{$dir}-#{$JC}-#{$AI} {
+//         display: flex;
+//         flex-direction: $direction;
+//         justify-content: $justifyContent;
+//         align-items: $alignItems;
+//       }
+//     }
+//   }
+// }
+
+/* ==================================================自定义- 溢出================================================== */
+// 移除省略
+.text-overflow-hidden {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 溢出换行
+.text-warp {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+//溢出不换行,不截止
+.text-no-warp {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+// 页签查看表单
+.read-form {
+  .title {
+    display: block;
+    color: #1d2129;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-top: 16px;
+    margin-bottom: 16px;
+
+    &:first-child {
+      padding-top: 8px;
+    }
+  }
+
+  .ant-row {
+    margin-bottom: 16px;
+
+    .ant-col {
+      display: flex;
+      flex-direction: column;
+      .ant-form-item-label {
+        line-height: 22px;
+        margin-bottom: 8px;
+      }
+
+      .field {
+        display: block;
+        color: var(---Text-3, #86909c);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        /* 157.143% */
+        margin-bottom: 4px;
+      }
+
+      .prop {
+        display: block;
+        color: var(---Text-5, #1d2129);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .textarea {
+        padding: 4px 12px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        display: block;
+        color: var(---Text-5, #1d2129);
+        border: 1px solid #e5e6eb;
+        overflow: hidden scroll;
+      }
+      .fileList_box {
+        display: flex;
+        justify-content: space-between;
+        background: #f7f8fa;
+        padding: 0 12px;
+        .filename {
+          width: 326px;
+          height: 32px;
+          line-height: 32px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          cursor: pointer;
+          span {
+            margin-right: 12px;
+          }
+        }
+        .downLoad {
+          display: flex;
+          align-items: center;
+          > span {
+            color: var(--light-text-color-text-2, #4e5969);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 22px; /* 157.143% */
+          }
+        }
+      }
+
+      .prop-box {
+        flex: 1;
+        min-height: 70px;
+        max-height: 160px;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
+      }
+    }
+  }
+}
+.more-col {
+  display: flex;
+  flex-wrap: wrap;
+}

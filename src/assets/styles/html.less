@@ -1,0 +1,200 @@
+@font-face {
+  font-family: 'PingFang Nor';
+  font-style: normal;
+  font-display: swap;
+  src: url('assets/font/pingfang-normal.woff2');
+}
+
+@font-face {
+  font-family: 'FZZDHJW';
+  font-style: normal;
+  src: url('assets/font/FZZDHJW.ttf');
+}
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+ul,
+li,
+ol,
+button,
+input,
+textarea,
+label,
+a,
+i,
+nav,
+iframe,
+main,
+video {
+  font-family: Arial, 'Microsoft YaHei';
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  list-style: none;
+  font-weight: normal;
+}
+button {
+  cursor: pointer;
+}
+html {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  // width: 100%;
+  overflow: hidden;
+}
+
+span,
+a,
+div {
+  font-size: 14px;
+}
+.iconfont {
+  cursor: pointer;
+}
+/* 滚动条样式 start------------------------------------*/
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #dcdbdb;
+  width: 5px;
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bcbaba;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #bcbaba;
+}
+
+.ag-body-horizontal-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.ag-body-horizontal-scroll::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+.ag-body-horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  width: 5px;
+  border-radius: 10px;
+}
+
+.ag-body-horizontal-scroll::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.ag-body-horizontal-scroll::-webkit-scrollbar-track {
+  background: white;
+}
+
+.ag-body-horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #ddd;
+  visibility: hidden;
+}
+
+.ag-body-horizontal-scroll:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+// 按钮---------------------------------------------------------------------
+button {
+  padding: 5px 16px 5px 16px;
+  line-height: 22px;
+
+  span {
+    font-size: 14px;
+    letter-spacing: -1px;
+    word-spacing: -2px;
+  }
+}
+
+button.ant-btn {
+  border: 1px solid #e5e6eb;
+  color: #1d2129;
+  border-radius: 2px;
+}
+
+button.ant-btn-link {
+  border: none;
+  background-color: transparent;
+}
+
+button.ant-btn-primary {
+  color: #ffffff;
+  background-color: #165dff;
+}
+img {
+  cursor: pointer;
+}
+/* 全局table样式 ---start */
+.table-wrap {
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  tr {
+    th {
+      font-weight: normal;
+      background: #f2f2f2;
+      border-bottom: 1px solid #e8e8e8 !important;
+      padding: 8px;
+    }
+    td {
+      border-top: 1px solid #e8e8e8 !important;
+      word-break: break-all;
+      padding: 8px;
+    }
+  }
+}
+/* 全局table样式 ---end */
+
+// ag-grid head
+.ag-theme-material
+  .ag-header-group-cell:not(.ag-column-resizing)
+  + .ag-header-group-cell:not(.ag-header-cell-moving):hover,
+.ag-theme-material .ag-header-group-cell:not(.ag-column-resizing) + .ag-header-group-cell.ag-column-resizing,
+.ag-theme-material .ag-header-cell:not(.ag-column-resizing) + .ag-header-cell:not(.ag-header-cell-moving):hover,
+.ag-theme-material .ag-header-cell:not(.ag-column-resizing) + .ag-header-cell.ag-column-resizing,
+.ag-theme-material .ag-header-group-cell:first-of-type:not(.ag-header-cell-moving):hover,
+.ag-theme-material .ag-header-group-cell:first-of-type.ag-column-resizing,
+.ag-theme-material .ag-header-cell:first-of-type:not(.ag-header-cell-moving):hover,
+.ag-theme-material .ag-header-cell:first-of-type.ag-column-resizing {
+  background-color: #dddddd;
+}
+.ag-theme-material .ag-header-cell:hover .ag-header-cell-resize:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  display: block;
+  left: calc(50% - 5px);
+  width: 4px;
+  height: 90%;
+  top: calc(50% - 45%);
+  background-color: #1e88e5;
+  border-radius: 20%;
+}

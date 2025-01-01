@@ -1,0 +1,6 @@
+e2e
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+dist

@@ -1,0 +1,72 @@
+import { gridSortBox } from '@/common/toolFun/grid.collection'
+import { manuscriptTypeList } from '@/common/enums/manuscript.enums'
+export const columnDefs = [
+  gridSortBox,
+  {
+    headerName: '导入文件名',
+    enableSorting: false,
+    resizable: true,
+    field: 'importFileName',
+    colId: 'importFileName',
+    minWidth: 150,
+    suppressSizeToFit: false,
+    isClick: true,
+    handler: 'lookInfo',
+    color: '#165dff',
+  },
+  {
+    headerName: '状态',
+    minWidth: 150,
+    suppressSizeToFit: false,
+    sortable: false,
+    cellRenderer: 'ExportStatusGrid',
+  },
+  {
+    headerName: '导入结果',
+    enableSorting: false,
+    resizable: true,
+    minWidth: 150,
+    suppressSizeToFit: false,
+    cellRenderer: 'ExportResultGrid',
+  },
+  {
+    headerName: '操作人员',
+    enableSorting: false,
+    resizable: true,
+    field: 'creatorName',
+    colId: 'creatorName',
+    minWidth: 150,
+    suppressSizeToFit: false,
+  },
+  {
+    headerName: '操作时间',
+    enableSorting: false,
+    resizable: true,
+    field: 'createDate',
+    colId: 'createDate',
+    minWidth: 200,
+    suppressSizeToFit: false,
+    sortable: true,
+    unSortIcon: true,
+  },
+  {
+    field: 'operate',
+    headerName: '操作',
+    suppressSizeToFit: true,
+    width: 130,
+    buttons: [
+      {
+        label: '失败清单',
+        handler: 'downLoad',
+        color: '#165DFF',
+        show: (params: any) => params.data.failNum,
+      },
+      {
+        label: '删除',
+        handler: 'deleteInfo',
+        color: '#F53F3F',
+      },
+    ],
+    pinned: 'right',
+  },
+]
